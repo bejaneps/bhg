@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/blackhat-go/bhg/ch-3/shodan/shodan"
+	"github.com/bejaneps/bhg/ch-3/shodan/shodan"
 )
 
 func main() {
@@ -29,6 +29,6 @@ func main() {
 	}
 
 	for _, host := range hostSearch.Matches {
-		fmt.Printf("%18s%8d\n", host.IPString, host.Port)
+		fmt.Printf("%18s%8d%30s\n", host.IPString, host.Port, host.Location.City)
 	}
 }

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-
+	fmt.Println("GET REQUEST")
 	resp, err := http.Get("https://www.google.com/robots.txt")
 	if err != nil {
 		log.Panicln(err)
@@ -26,6 +26,7 @@ func main() {
 	fmt.Println(string(body))
 	resp.Body.Close()
 
+	fmt.Println("\n\nHEAD REQUEST")
 	resp, err = http.Head("https://www.google.com/robots.txt")
 	if err != nil {
 		log.Panicln(err)
@@ -33,6 +34,7 @@ func main() {
 	resp.Body.Close()
 	fmt.Println(resp.Status)
 
+	fmt.Println("\n\nPOST REQUEST")
 	form := url.Values{}
 	form.Add("foo", "bar")
 	resp, err = http.Post(
@@ -46,6 +48,7 @@ func main() {
 	resp.Body.Close()
 	fmt.Println(resp.Status)
 
+	fmt.Println("\n\nDELETE REQUEST")
 	req, err := http.NewRequest("DELETE", "https://www.google.com/robots.txt", nil)
 	if err != nil {
 		log.Panicln(err)
@@ -55,6 +58,7 @@ func main() {
 	resp.Body.Close()
 	fmt.Println(resp.Status)
 
+	fmt.Println("\n\nPUT REQUEST")
 	req, err = http.NewRequest("PUT", "https://www.google.com/robots.txt", strings.NewReader(form.Encode()))
 	resp, err = client.Do(req)
 	if err != nil {
